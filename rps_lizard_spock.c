@@ -6,17 +6,18 @@
 // These are the rules to the game, it is simple text that will print to the terminal;
 void rules();
 
+// This is the function that will prompt the user for their selection, and then store it in the variable, select;
+char* userInput(select);
+
 // main function will contain all other functions in this program;
 int main() {
-    // Call the introduction function;
-    //intro();
     // Call the rules function;
     rules();
-
+    // Call the userInput function;
+    userInput(select);
+    
     return 0;
 }
-
-
 
 // Define rules function;
 void rules() {
@@ -28,4 +29,10 @@ void rules() {
 	   "rock crushes lizard, lizard poisons Spock, Spock smashes scissors,\n" 
 	   "scissors decapitates lizard, lizard eats paper, paper disproves Spock,\n" 
 	   "Spock vaporizes rock, and as it always has, rock crushes scissors.'\n\n");
+}
+
+// Define userInput function;
+char* userInput(select) {
+
+
 }
