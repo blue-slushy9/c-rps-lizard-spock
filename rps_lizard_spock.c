@@ -7,12 +7,14 @@
 void rules();
 
 // This is the function that will prompt the user for their selection, and then store it in the variable, select;
-char* userInput(select);
+char* userInput(char* select);
 
 // main function will contain all other functions in this program;
 int main() {
     // Call the rules function;
     rules();
+    // Declare the select variable we will use in our userInput function;
+    char* select;
     // Call the userInput function;
     userInput(select);
     
@@ -32,7 +34,11 @@ void rules() {
 }
 
 // Define userInput function;
-char* userInput(select) {
-
-
+char* userInput(char* select) {
+    // Print the prompt to the terminal;
+    printf("Please enter your selection now: ");
+    // Take user input as string;
+    scanf("%s", select);
+    // FOR TESTING PURPOSES
+    printf("Test: %s\n", select);
 }
