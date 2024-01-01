@@ -9,6 +9,8 @@ void rules();
 // This is the function that will prompt the user for their selection, and then store it in the variable, select;
 char* userInput(char* select);
 
+
+
 // main function will contain all other functions in this program;
 int main() {
     // Call the rules function;
@@ -16,7 +18,7 @@ int main() {
     // Declare the select variable we will use in our userInput function;
     char* select;
     // Call the userInput function;
-    userInput(select);
+    userInput[10](select);
     
     return 0;
 }
@@ -30,7 +32,7 @@ void rules() {
 	   "simply quote him: 'Scissors cuts paper, paper covers rock,\n" 
 	   "rock crushes lizard, lizard poisons Spock, Spock smashes scissors,\n" 
 	   "scissors decapitates lizard, lizard eats paper, paper disproves Spock,\n" 
-	   "Spock vaporizes rock, and as it always has, rock crushes scissors.'\n\n");
+	   "Spock vaporizes rock, and as it always has, rock crushes scissors!'\n\n");
 }
 
 // Define userInput function;
