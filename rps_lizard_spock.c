@@ -1,15 +1,12 @@
 #include <stdio.h>
-
-// You want to declare your functions you plan to use in your program as
-// function prototypes before you call them inside of main() or define them;
+// ctype.h contains tolower function;
+#include <ctype.h>
 
 // These are the rules to the game, it is simple text that will print to the terminal;
 void rules();
 
 // This is the function that will prompt the user for their selection, and then store it in the variable, select;
 char* userInput(char* select);
-
-
 
 // main function will contain all other functions in this program;
 int main() {
@@ -48,5 +45,14 @@ char* userInput(char* select) {
     // FOR TESTING PURPOSES
     printf("Test: %s\n", select);
     // Return variable so that other functions can use it;
+    //return select;
+
+    // Convert the input to lower-case by looping through every character one-by-one;
+    for (int i = 0; select[i]; i++) {
+        select[i] = tolower(select[i]);
+    }
+    // DEBUGGING
+    printf("%s\n", select);
+    // Return the input, now in lower-case;
     return select;
 }
