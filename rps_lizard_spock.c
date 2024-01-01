@@ -22,7 +22,7 @@ int main() {
     char* choice = userInput(select);
     // Call the userInput function;
     //userInput(select);
-    // This might not need to be here, using it for debugging;
+    // This might not need to be here, using it for DEBUGGING;
     printf("Selection: %s\n", choice);
     return 0;
 }
@@ -43,10 +43,10 @@ void rules() {
 char* userInput(char* select) {
     // Print the prompt to the terminal;
     printf("Please enter your selection now: ");
-    // Take user input as string;
+    // Take user input as string, up to 9 characters;
     scanf("%9s", select);
     // FOR TESTING PURPOSES
     printf("Test: %s\n", select);
-
+    // Return variable so that other functions can use it;
     return select;
 }
