@@ -15,11 +15,15 @@ char* userInput(char* select);
 int main() {
     // Call the rules function;
     rules();
-    // Declare the select variable we will use in our userInput function;
-    char* select;
+    // Declare the select variable we will use in our userInput function,
+    // specify maximum number of input characters;
+    char select[10];
+    // Set the local variable, choice, to the userInput;
+    char* choice = userInput(select);
     // Call the userInput function;
-    userInput[10](select);
-    
+    //userInput(select);
+    // This might not need to be here, using it for debugging;
+    printf("Selection: %s\n", choice);
     return 0;
 }
 
@@ -40,9 +44,9 @@ char* userInput(char* select) {
     // Print the prompt to the terminal;
     printf("Please enter your selection now: ");
     // Take user input as string;
-    scanf("%s", select);
+    scanf("%9s", select);
     // FOR TESTING PURPOSES
     printf("Test: %s\n", select);
-}
 
-// For testing purposes
+    return select;
+}
