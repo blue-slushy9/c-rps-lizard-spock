@@ -1,5 +1,6 @@
 #include <stdio.h>
-// ctype.h contains tolower function;
+// ctype.h contains tolower function, which converts all user-input text to
+// lower-case, to control for user error;
 #include <ctype.h>
 
 // These are the rules to the game, it is simple text that will print to the terminal;
