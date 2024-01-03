@@ -9,12 +9,19 @@ void rules();
 // This is the function that will prompt the user for their selection, and then store it in the variable, select;
 char* userInput(char* select);
 
-// Define a struct for key-value pairs, i.e. a dictionary;
-struct dict {
+// Define a struct for key-value pairs, which we will in turn use to create our dictionary;
+struct KeyValue {
     // None of the possible options have more than 10 characters, so we can
     // set the limit there for memory preservation and security purposes;
     char key[10];
     char value[10];
+};
+
+// Define our dictionary of all possible user input combinations;
+struct Dict {
+    struct KeyValue entries[5];
+    // We will use the size variable to store the number of dictionary entries;
+    int size;
 };
 
 // main function will contain all other functions in this program;
