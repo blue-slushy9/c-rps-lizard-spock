@@ -25,3 +25,25 @@ int *ptr = &x;
 
 // Dereference the pointer to access the value at the memory address it points to;
 int value = *ptr;
+
+// EXAMPLE CODE
+
+#include <stdio.h>
+
+int main() {
+    int x = 42;
+
+    // Declare a pointer and initialize it with the address of x
+    int *ptr = &x;
+
+    // Dereference the pointer to access the value at the memory address it points to
+    int value = *ptr;
+
+    // Print the value
+    printf("The value of x is: %d\n", value);
+
+    return 0;
+}
+
+// OUTPUT
+// The value of x is: 42
