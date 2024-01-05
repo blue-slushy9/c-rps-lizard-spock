@@ -36,14 +36,14 @@ struct Dict rpslsDict = {
     .size = 10
 };
 
-// DEBUGGING
-//printDictionary(&rpslsDict);
-
-// These are the rules to the game, it is simple text that will print to the terminal;
+// Declare our rules to the game, it is simple text that will print to the terminal;
 void rules();
 
-// This is the function that will prompt the user for their selection, and then store it in the variable, select;
+// Declare the function that will prompt the user for their selection, and then store it in the variable, select;
 char* userInput(char* select);
+
+// Declare our printDict function;
+void printDict(const struct Dict *dict);
 
 // main function will contain all other functions in this program;
 int main() {
@@ -58,10 +58,12 @@ int main() {
     //userInput(select);
     // This might not need to be here, using it for DEBUGGING;
     printf("Selection: %s\n", choice);
+    // DEBUGGING
+    printDict(&rpslsDict);
     return 0;
 }
 
-// Define rules function;
+// Define the rules function;
 void rules() {
     printf("\nThis is Rock-Paper-Scissors-Lizard-Spock, from the hit TV show,\n"
            "Big Bang Theory! It is similar to Rock-Paper-Scissors, but with\n"
@@ -73,7 +75,7 @@ void rules() {
 	   "Spock vaporizes rock, and as it always has, rock crushes scissors!'\n\n");
 }
 
-// Define userInput function;
+// Define the userInput function;
 char* userInput(char* select) {
     // Print the prompt to the terminal;
     printf("Please enter your selection now: ");
@@ -93,3 +95,14 @@ char* userInput(char* select) {
     // Return the input, now in lower-case;
     return select;
 }
+
+// Define the printDict function;
+void printDict(const struct Dict *dict) {
+    printf("Dictionary:\n");
+    // dict->size is an arrow function that can also be expressed as (*dict).size ...
+    for (int i=0; i<dict->size; i++) { // ... i.e. the arrow function dereferences a pointer... 
+        printf("Key: %s, Value: %s\n", dict->combos[i].key, dict->combos[i].value);
+    } // ...to a structure and then accesses a member of that structure;
+}
+
+
