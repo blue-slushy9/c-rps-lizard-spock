@@ -8,51 +8,82 @@ struct KeyValue {
     // None of the possible options have more than 10 characters, so we can
     // set the limit there for memory preservation and security purposes;
     char key[10];
-    char value[10];
+    char value[50];
 };
 
 // Define our dictionary struct of all possible user input combinations;
 struct Dict {
-    // Define struct of type KeyValue, mySign, as an array consisting of 5 elements;
-    struct KeyValue mySign[5];
+    // Define struct of type KeyValue, mySign, as an array consisting of 30 elements;
+    struct KeyValue computerSign[50];
     // We will use the size variable to store the number of dictionary entries;
     int size;
 };
 
 // Define our subdictionary struct, which will contain the computer's possible "choices";
-struct subDict {
-    // We use char to define the name of our subdictionary as an array of up to 12 characters;
-    char computerSign[12];
+struct nestDict {
+    // We use char to define the name of our subdictionary as an array of up to 6 characters;
+    char mySign[10];
     // We place our sub-struct of type Dict inside of our main Dict;
     struct Dict subDict;
 };
 
 // Now we define our Dict and its subDict;
-struct subDict computerSign = {
+struct nestDict rpslsDict = {
     .mySign = "Rock",
-    .computerSign = {
-        
-
-
+    .subDict = {
+        .computerSign = {
+	    {"Paper", "Paper covers rock, therefore you lose!"},
+	    {"Scissors", "Rock crushes scissors, therefore you win!"},
+	    {"Lizard", "Rock crushes lizard, therefore you win!"},
+	    {"Spock", "Spock vaporizes rock, therefore you lose!"}
+	},
+        .size = 4
+    }
+    .mySign = "Paper",
+    .subDict = {
+        .computerSign = {
+	    {"Scissors", "Scissors cuts paper, therefore you lose!"},
+	    {"Lizard", "Lizard eats paper, therefore you lose!"},
+	    {"Spock", "Paper disproves Spock, therefore you win!"}
+	},
+        .size = 3
+    }
+    .mySign = "Scissors",
+    .subDict = {
+        .computerSign = {
+	    {"Lizard", "Scissors decapitate lizard, therefore you win!"},
+	    {"Spock", "Spock smashes scissors, therefore you lose!"}
+	},
+	.size = 2
+    }
+    .mySign = "Lizard",
+    .subDict = {
+        .computerSign = {
+	    {"Spock", "Lizard poisons Spock, therefore you win!"}
+	},
+	.size = 1
+    }
 };
-//computerSign[4];
+
 
 // Define a type-Dict dictionary, rpslsDict;
-struct Dict rpslsDict = {
-    .mySign = {
-        {"rock", "paper"},
-	{"rock", "scissors"},
-	{"rock", "lizard"},
-	{"rock", "spock"},
-	{"paper", "scissors"},
-	{"paper", "lizard"},
-	{"paper", "spock"},
-	{"scissors", "lizard"},
-	{"scissors", "spock"},
-	{"lizard", "spock"}
-    },
-    .size = 10
-};
+//struct Dict rpslsDict = {
+//    .mySign = {
+//        {"rock", "paper"},
+//	{"rock", "scissors"},
+//	{"rock", "lizard"},
+//	{"rock", "spock"},
+//	{"paper", "scissors"},
+//	{"paper", "lizard"},
+//	{"paper", "spock"},
+//	{"scissors", "lizard"},
+//	{"scissors", "spock"},
+//	{"lizard", "spock"}
+//    },
+//    .size = 10
+//};
+// BLOCK COMMENT
+
 
 // Declare our rules to the game, it is simple text that will print to the terminal;
 void rules();
