@@ -11,17 +11,35 @@ struct KeyValue {
     char value[10];
 };
 
-// Define our dictionary of all possible user input combinations;
+// Define our dictionary struct of all possible user input combinations;
 struct Dict {
-    // Define struct of type KeyValue, combos, as an array consisting of 5 elements;
-    struct KeyValue combos[10];
+    // Define struct of type KeyValue, mySign, as an array consisting of 5 elements;
+    struct KeyValue mySign[5];
     // We will use the size variable to store the number of dictionary entries;
     int size;
 };
 
+// Define our subdictionary struct, which will contain the computer's possible "choices";
+struct subDict {
+    // We use char to define the name of our subdictionary as an array of up to 12 characters;
+    char computerSign[12];
+    // We place our sub-struct of type Dict inside of our main Dict;
+    struct Dict subDict;
+};
+
+// Now we define our Dict and its subDict;
+struct subDict computerSign = {
+    .mySign = "Rock",
+    .computerSign = {
+        
+
+
+};
+//computerSign[4];
+
 // Define a type-Dict dictionary, rpslsDict;
 struct Dict rpslsDict = {
-    .combos = {
+    .mySign = {
         {"rock", "paper"},
 	{"rock", "scissors"},
 	{"rock", "lizard"},
