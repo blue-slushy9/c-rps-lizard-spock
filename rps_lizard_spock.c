@@ -14,7 +14,7 @@ struct KeyValue {
 // Define our dictionary struct of all possible user input combinations;
 struct Dict {
     // Define struct of type KeyValue, mySign, as an array consisting of 30 elements;
-    struct KeyValue computerSign[50];
+    struct KeyValue computer[50];
     // We will use the size variable to store the number of dictionary entries;
     int size;
 };
@@ -22,49 +22,63 @@ struct Dict {
 // Define our subdictionary struct, which will contain the computer's possible "choices";
 struct nestDict {
     // We use char to define the name of our subdictionary as an array of up to 6 characters;
-    char mySign[10];
-    // We place our sub-struct of type Dict inside of our main Dict;
-    struct Dict subDict;
+    char id[10];
+    // We place our sub-struct of type Dict inside of our main Dict, then specify a max number
+    // of subDicts of 5;
+    struct Dict subDicts[5];
+    // We will use the size variable to store the number of dictionary entries;
+    int numSubDicts;
 };
 
-// Now we define our Dict and its subDict;
+// Now we define our nested dictionary;
 struct nestDict rpslsDict = {
-    .mySign = "Rock",
-    .subDict = {
-        .computerSign = {
-	    {"Paper", "Paper covers rock, therefore you lose!"},
-	    {"Scissors", "Rock crushes scissors, therefore you win!"},
-	    {"Lizard", "Rock crushes lizard, therefore you win!"},
-	    {"Spock", "Spock vaporizes rock, therefore you lose!"}
-	},
-        .size = 4
-    }
-    .mySign = "Paper",
-    .subDict = {
-        .computerSign = {
-	    {"Scissors", "Scissors cuts paper, therefore you lose!"},
-	    {"Lizard", "Lizard eats paper, therefore you lose!"},
-	    {"Spock", "Paper disproves Spock, therefore you win!"}
-	},
-        .size = 3
-    }
-    .mySign = "Scissors",
-    .subDict = {
-        .computerSign = {
-	    {"Lizard", "Scissors decapitate lizard, therefore you win!"},
-	    {"Spock", "Spock smashes scissors, therefore you lose!"}
-	},
-	.size = 2
-    }
-    .mySign = "Lizard",
-    .subDict = {
-        .computerSign = {
-	    {"Spock", "Lizard poisons Spock, therefore you win!"}
-	},
-	.size = 1
+    .id = "rpslsDict",
+    .numSubDicts = 5,
+    .subDicts = {
+        {
+            .id = "Rock",
+            .subDict = {
+                .computer = {
+	            {"Paper", "Paper covers rock, therefore you lose!"},
+	            {"Scissors", "Rock crushes scissors, therefore you win!"},
+	            {"Lizard", "Rock crushes lizard, therefore you win!"},
+	            {"Spock", "Spock vaporizes rock, therefore you lose!"}
+	        },
+                .size = 4
+            }
+        },
+        {
+            .id = "Paper",
+            .subDict = {
+                .computer = {
+	            {"Scissors", "Scissors cuts paper, therefore you lose!"},
+	            {"Lizard", "Lizard eats paper, therefore you lose!"},
+	            {"Spock", "Paper disproves Spock, therefore you win!"}
+	        },
+                .size = 3
+	    } 
+        },
+	{
+            .id = "Scissors",
+            .subDict = {
+                .computerSign = {
+	            {"Lizard", "Scissors decapitate lizard, therefore you win!"},
+	            {"Spock", "Spock smashes scissors, therefore you lose!"}
+	        },
+	        .size = 2
+	    }
+        },
+        {
+	    .id = "Lizard",
+            .subDict = {
+                .computer = {
+	            {"Spock", "Lizard poisons Spock, therefore you win!"}
+	        },
+	        .size = 1
+            }
+        }
     }
 };
-
 
 // Define a type-Dict dictionary, rpslsDict;
 //struct Dict rpslsDict = {
