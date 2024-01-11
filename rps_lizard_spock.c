@@ -11,13 +11,21 @@ struct KeyValue {
     char value[50];
 };
 
-// Define our dictionary struct of all possible user input combinations;
+// Define our dictionary struct of all possible user-computer combinations;
 struct Dict {
-    // Define struct of type KeyValue, mySign, as an array consisting of 30 elements;
-    struct KeyValue computer[50];
-    // We will use the size variable to store the number of dictionary entries;
-    int size;
-};
+    // Define struct of type 
+
+// Define our dictionary struct of all possible user input combinations;
+//struct Dict {
+//    // Define struct of type KeyValue, mySign, as an array consisting of 30 elements;
+//    struct KeyValue computer[50];
+//    // We will use the size variable to store the number of dictionary entries;
+//    int size;
+//    // DEBUGGING
+//    char id[10];
+//    // DEBUGGING
+//    struct KeyValue subDict[50];
+//};
 
 // Define our subdictionary struct, which will contain the computer's possible "choices";
 struct nestDict {

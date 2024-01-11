@@ -1,3 +1,36 @@
+// EXAMPLE OF PROPER INITIALIZER
+
+#include <stdio.h>
+
+struct Player {
+    int score;
+    char name[20];
+};
+
+struct Game {
+    struct Player player1;
+    struct Player player2;
+};
+
+int main() {
+    // Correct initializer
+    struct Game myGame1 = {
+        .player1 = { .score = 10, .name = "Alice" },
+        .player2 = { .score = 8, .name = "Bob" }
+    };
+
+    // Incorrect initializer (will produce the mentioned error)
+    struct Game myGame2 = {
+        .computer = { .score = 5, .name = "AI" }  // Error: field name not in record or union initializer
+    };
+
+    return 0;
+}
+
+// END EXAMPLE INITIALIZER
+
+######################################
+
 // * is the dereference operator, it is used to access the value stored at the address
 // held by a pointer;
 
