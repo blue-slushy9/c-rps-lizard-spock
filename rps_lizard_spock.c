@@ -13,7 +13,30 @@ struct KeyValue {
 
 // Define our dictionary struct of all possible user-computer combinations;
 struct Dict {
-    // Define struct of type 
+    // Define structs, one of each possible sign;
+    struct KeyValue rock;
+    struct KeyValue paper;
+    struct KeyValue scissors;
+    struct KeyValue lizard;
+    struct KeyValue spock;
+};
+
+// Define our main nested dictionary;
+struct Dict nestDict = {
+    .rock = { .key = "paper", .value = "Paper covers rock, therefore you lose!"},
+	    { .key = "scissors", .value = "Rock crushes scissors, therefore you win!"},
+	    { .key = "lizard", .value = "Rock crushes lizard, therefore you win!"},
+	    { .key = "spock", .value = "Spock vaporizes rock, therefore you lose!"}
+    
+    .paper = { .key = "scissors", .value = "Scissors cuts paper, therefore you lose!"},
+	     { .key = "lizard", .value = "Lizard eats paper, therefore you lose!"},
+	     { .key = "spock", .value = "Paper disproves Spock, therefore you win!"}
+
+    .scissors = { .key = "lizard", .value = "Scissors decapitate lizard, therefore you win!"},
+	        { .key = "spock", .value = "Spock smashes scissors, therefore you lose!"}
+
+    .lizard = { .key = "spock", .value = "Lizard poisons Spock, therefore you win!"}
+};
 
 // Define our dictionary struct of all possible user input combinations;
 //struct Dict {
@@ -28,65 +51,65 @@ struct Dict {
 //};
 
 // Define our subdictionary struct, which will contain the computer's possible "choices";
-struct nestDict {
-    // We use char to define the name of our subdictionary as an array of up to 6 characters;
-    char id[10];
-    // We place our sub-struct of type Dict inside of our main Dict, then specify a max number
-    // of subDicts of 5;
-    struct Dict subDicts[5];
-    // We will use the size variable to store the number of dictionary entries;
-    int numSubDicts;
-};
+//struct nestDict {
+//    // We use char to define the name of our subdictionary as an array of up to 6 characters;
+//    char id[10];
+//    // We place our sub-struct of type Dict inside of our main Dict, then specify a max number
+//    // of subDicts of 5;
+//    struct Dict subDicts[5];
+//    // We will use the size variable to store the number of dictionary entries;
+//    int numSubDicts;
+//};
 
 // Now we define our nested dictionary;
-struct nestDict rpslsDict = {
-    .id = "rpslsDict",
-    .numSubDicts = 5,
-    .subDicts = {
-        {
-            .id = "Rock",
-            .subDict = {
-                .computer = {
-	            {"Paper", "Paper covers rock, therefore you lose!"},
-	            {"Scissors", "Rock crushes scissors, therefore you win!"},
-	            {"Lizard", "Rock crushes lizard, therefore you win!"},
-	            {"Spock", "Spock vaporizes rock, therefore you lose!"}
-	        },
-                .size = 4
-            }
-        },
-        {
-            .id = "Paper",
-            .subDict = {
-                .computer = {
-	            {"Scissors", "Scissors cuts paper, therefore you lose!"},
-	            {"Lizard", "Lizard eats paper, therefore you lose!"},
-	            {"Spock", "Paper disproves Spock, therefore you win!"}
-	        },
-                .size = 3
-	    } 
-        },
-	{
-            .id = "Scissors",
-            .subDict = {
-                .computerSign = {
-	            {"Lizard", "Scissors decapitate lizard, therefore you win!"},
-	            {"Spock", "Spock smashes scissors, therefore you lose!"}
-	        },
-	        .size = 2
-	    }
-        },
-        {
-	    .id = "Lizard",
-            .subDict = {
-                .computer = {
-	            {"Spock", "Lizard poisons Spock, therefore you win!"}
-	        },
-	        .size = 1
-            }
-        }
-    }
-};
+//struct nestDict rpslsDict = {
+//    .id = "rpslsDict",
+//    .numSubDicts = 5,
+//    .subDicts = {
+//        {
+//            .id = "Rock",
+//            .subDict = {
+//                .computer = {
+//	            {"Paper", "Paper covers rock, therefore you lose!"},
+//	            {"Scissors", "Rock crushes scissors, therefore you win!"},
+//	            {"Lizard", "Rock crushes lizard, therefore you win!"},
+//	            {"Spock", "Spock vaporizes rock, therefore you lose!"}
+//	        },
+//                .size = 4
+//            }
+//        },
+//        {
+//            .id = "Paper",
+//            .subDict = {
+//                .computer = {
+//	            {"Scissors", "Scissors cuts paper, therefore you lose!"},
+//	            {"Lizard", "Lizard eats paper, therefore you lose!"},
+//	            {"Spock", "Paper disproves Spock, therefore you win!"}
+//	        },
+//                .size = 3
+//	    } 
+//        },
+//	{
+//            .id = "Scissors",
+//            .subDict = {
+//                .computerSign = {
+//	            {"Lizard", "Scissors decapitate lizard, therefore you win!"},
+//	            {"Spock", "Spock smashes scissors, therefore you lose!"}
+//	        },
+//	        .size = 2
+//	    }
+//        },
+//        {
+//	    .id = "Lizard",
+//            .subDict = {
+//                .computer = {
+//	            {"Spock", "Lizard poisons Spock, therefore you win!"}
+//	        },
+//	        .size = 1
+//            }
+//        }
+//    }
+//};
 
 // Define a type-Dict dictionary, rpslsDict;
 //struct Dict rpslsDict = {
@@ -168,11 +191,11 @@ char* userInput(char* select) {
 }
 
 // Define the printDict function;
-void printDict(const struct Dict *dict) {
+void printDict(const struct Dict *nestDict) {
     printf("Dictionary:\n");
     // dict->size is an arrow function that can also be expressed as (*dict).size ...
     for (int i=0; i<dict->size; i++) { // ... i.e. the arrow function dereferences a pointer... 
-        printf("Key: %s, Value: %s\n", dict->combos[i].key, dict->combos[i].value);
+        printf("Key: %s, Value: %s\n", nestDict->KeyValue[i].key, nestDict->KeyValue[i].value);
     } // ...to a structure and then accesses a member of that structure;
 }
 
