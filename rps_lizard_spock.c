@@ -1,6 +1,6 @@
 #include <stdio.h>
 // ctype.h contains tolower function, which converts all user-input text to
-// lower-case, to control for user error;
+// lower-case, to control for user error
 #include <ctype.h>
 
 // Define a struct for key-value pairs, which we will in turn use to create our dictionary;
