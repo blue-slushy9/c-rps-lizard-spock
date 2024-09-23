@@ -9,10 +9,10 @@
 #define MAX_VALUE_LENGTH 50
 
 // Max entries for the middle dictionary
-#define MAX_MID_ENTRIES 5
+//#define MAX_MID_ENTRIES 5
 
 // Max entries for the inner dictionary
-#define MAX_INNER_ENTRIES 10
+#define MAX_INNER_ENTRIES 5
 
 /* The typedef keyword is used to create a new type alias. It allows you to 
 give a name (alias) to a data type so that you can use it without repeating 
@@ -25,16 +25,18 @@ typedef struct {
     char value[MAX_VALUE_LENGTH];
 } InnerDictEntry;
 
+/* I made a mistake, only two layers are needed
 // Define structure for middle dictionary, used for a single entry
 typedef struct {
     char key[MAX_KEY_LENGTH];
     // This array holds the inner dictionary
     InnerDictEntry entries[MAX_INNER_ENTRIES];
 } MiddleDictEntry;
+*/
 
 // Define structure for outer dictionary
 typedef struct {
     char key[MAX_KEY_LENGTH];
     // This array holds the middle dictionary
-    MiddleDictEntry entries[MAX_MID_ENTRIES];
+    InnerDictEntry entries[MAX_INNER_ENTRIES];
 } OuterDict;
