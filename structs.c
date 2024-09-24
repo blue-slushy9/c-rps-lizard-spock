@@ -21,8 +21,8 @@ InnerDict that represents the structure. */
 
 // Define structure for inner dictionary, used for a single entry
 typedef struct {
-    char key[MAX_KEY_LENGTH];
-    char value[MAX_VALUE_LENGTH];
+    const char key[MAX_KEY_LENGTH];
+    const char value[MAX_VALUE_LENGTH];
 } InnerDictEntry;
 
 /* I made a mistake, only two layers are needed
@@ -36,7 +36,39 @@ typedef struct {
 
 // Define structure for outer dictionary
 typedef struct {
-    char key[MAX_KEY_LENGTH];
+    const char key[MAX_KEY_LENGTH];
     // This array holds the middle dictionary
     InnerDictEntry entries[MAX_INNER_ENTRIES];
 } OuterDict;
+
+// Static initialization of our dictionary
+OuterDict dict[] = {
+    {"Rock", {
+        {"Paper", "Paper covers rock, therefore you lose!"},
+        {"Scissors", "Rock crushes scissors, therefore you win!"},
+        {"Lizard", "Rock crushes lizard, therefore you win!"},
+        {"Spock", "Spock vaporizes rock, therefore you lose!"}
+        }
+    },
+    {"Paper", {
+        {"Scissors", "Scissors cuts paper, therefore you lose!"},
+        {"Lizard", "Lizard eats paper, therefore you lose!"},
+        {"Spock", "Paper disproves Spock, therefore you win!"}
+        }
+    },
+    {"Scissors", {
+        {"Lizard", "Scissors decapitate lizard, therefore you win!"},
+        {"Spock", "Spock smashes scissors, therefore you lose!"}
+        }
+    },
+    {"Lizard", {
+        {"Spock", "Lizard poisons Spock, therefore you win!"}
+        }
+    }
+};
+
+// Need to define a main function in order to compile
+int main() {
+    printf("Test");
+    return 0;
+}
