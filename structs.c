@@ -3,16 +3,13 @@
 // This is a practice program to help me get better with structs
 
 // e.g. 'Rock', 'Spock'
-#define MAX_KEY_LENGTH 10
+#define MAX_SIGN_LENGTH 10
 
 // e.g. 'Lizard poisons Spock...'
-#define MAX_VALUE_LENGTH 50
-
-// Max entries for the middle dictionary
-//#define MAX_MID_ENTRIES 5
+#define MAX_OUTCOME_LENGTH 50
 
 // Max entries for the inner dictionary
-#define MAX_INNER_ENTRIES 5
+#define MAX_ENTRIES 5
 
 /* The typedef keyword is used to create a new type alias. It allows you to 
 give a name (alias) to a data type so that you can use it without repeating 
@@ -21,24 +18,15 @@ InnerDict that represents the structure. */
 
 // Define structure for inner dictionary, used for a single entry
 typedef struct {
-    const char key[MAX_KEY_LENGTH];
-    const char value[MAX_VALUE_LENGTH];
+    const char sign2[MAX_SIGN_LENGTH];
+    const char outcome[MAX_OUTCOME_LENGTH];
 } InnerDictEntry;
-
-/* I made a mistake, only two layers are needed
-// Define structure for middle dictionary, used for a single entry
-typedef struct {
-    char key[MAX_KEY_LENGTH];
-    // This array holds the inner dictionary
-    InnerDictEntry entries[MAX_INNER_ENTRIES];
-} MiddleDictEntry;
-*/
 
 // Define structure for outer dictionary
 typedef struct {
-    const char key[MAX_KEY_LENGTH];
+    const char sign1[MAX_SIGN_LENGTH];
     // This array holds the middle dictionary
-    InnerDictEntry entries[MAX_INNER_ENTRIES];
+    InnerDictEntry entries[MAX_ENTRIES];
 } OuterDict;
 
 // Static initialization of our dictionary
@@ -67,8 +55,29 @@ OuterDict dict[] = {
     }
 };
 
-// Need to define a main function in order to compile
+// Declare printDict function
+void printDict(OuterDict dict[], int size);
+
+
 int main() {
-    printf("Test");
+    int size = MAX_SIGN_LENGTH;
+    // Call printDict function
+    printDict(dict, size);
     return 0;
+}
+
+// Define printDict function
+void printDict(OuterDict dict[], int size) {
+    // n is the number of entries under each outer/P1 sign, we start with 4
+    // and subtract 1 after each iteration
+    int n=4;
+    for (int i=0; i<=size; i++) {
+        // Print the outer sign
+        printf("Sign 1: %s\n", dict[i].sign1);
+        // Tricky because each outer sign has a different number of entries
+        for (int j=0; j<n; j++) {
+            printf("Sign 2: %s\n", dict[i].entries[j].sign2);
+            n--;
+        }
+    }
 }
