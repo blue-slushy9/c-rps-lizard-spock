@@ -11,15 +11,23 @@
 // Max entries for the inner dictionary
 #define MAX_ENTRIES 5
 
+// Max number of possible outcomes
+#define MAX_OUTCOMES 4
+
 /* The typedef keyword is used to create a new type alias. It allows you to 
 give a name (alias) to a data type so that you can use it without repeating 
 the full definition of the type. In this case, it's creating a type called 
 InnerDict that represents the structure. */
 
+// Define structure for outcomes of sign1 and sign2
+typedef struct {
+    const char outcome[MAX_OUTCOME_LENGTH];
+} Outcome;
+
 // Define structure for inner dictionary, used for a single entry
 typedef struct {
     const char sign2[MAX_SIGN_LENGTH];
-    const char outcome[MAX_OUTCOME_LENGTH];
+    Outcome outcomes[MAX_OUTCOMES];
 } InnerDictEntry;
 
 // Define structure for outer dictionary
@@ -60,8 +68,10 @@ void printDict(OuterDict dict[], int size);
 
 
 int main() {
-    int size = MAX_SIGN_LENGTH;
-    // Call printDict function
+    int size = 4;
+    // Debug
+    printf("size: %i\n", size);
+    // Call printDict function, 4 is the correct size argument to pass
     printDict(dict, size);
     return 0;
 }
@@ -73,11 +83,15 @@ void printDict(OuterDict dict[], int size) {
     int n=4;
     for (int i=0; i<=size; i++) {
         // Print the outer sign
-        printf("Sign 1: %s\n", dict[i].sign1);
-        // Tricky because each outer sign has a different number of entries
+        printf("Human: %s\n", dict[i].sign1);
+        // Iterate over all of the inner signs under the current outer sign
         for (int j=0; j<n; j++) {
-            printf("Sign 2: %s\n", dict[i].entries[j].sign2);
-            n--;
+            // Print the inner sign
+            printf("Computer: %s\n", dict[i].entries[j].sign2);
+            // Print the outcome of the outer and inner sign
+            printf("Outcome: %s\n", dict[i].entries[j].outcomes[0].outcome);
         }
+        // We must iterate over every for-loop layer before subtracting from n
+        n--;
     }
 }
