@@ -68,10 +68,10 @@ void printDict(OuterDict dict[], int size);
 
 
 int main() {
-    int size = 4;
+    int size = 3;
     // Debug
     printf("size: %i\n", size);
-    // Call printDict function, 4 is the correct size argument to pass
+    // Call printDict function, 3 is the correct size argument to pass
     printDict(dict, size);
     return 0;
 }
@@ -83,7 +83,7 @@ void printDict(OuterDict dict[], int size) {
     int n=4;
     for (int i=0; i<=size; i++) {
         // Print the outer sign
-        printf("Human: %s\n", dict[i].sign1);
+        printf("\nHuman: %s\n", dict[i].sign1);
         // Iterate over all of the inner signs under the current outer sign
         for (int j=0; j<n; j++) {
             // Print the inner sign
