@@ -84,9 +84,14 @@ int main() {
 // Declare our rules to the game, simple text that will print to the terminal
 void rules();
 
+// Declare the function that will convert all letters in user input to lower-
+// case
+char* toLower(char* select);
+
 // Declare the function that will prompt the user for their selection, 
 // and then store it in the variable, select
-char* userInput(char* select);
+char* userInput();
+//char* userInput(char* select);
 
 // Declare the function that will print the user's selection, as well as the
 // computer's, to the terminal(; followed by the outcome ?)
@@ -104,15 +109,14 @@ int main() {
     rules();
     // Declare the select variable we will use in our userInput function,
     // specify maximum number of input characters
-    char select[10];
+    //char select[10];
     // Set the local variable, choice, to the output of the userInput function
-    char* choice = userInput(select);
-    // Call the userInput function
-    //userInput(select);
-    // This might not need to be here, using it for DEBUGGING
-    printf("Selection: %s\n", choice);
-    // DEBUGGING
-    //printDict(&rpslsDict);
+    char* choice = userInput();
+    //char* choice = userInput(select);
+    // Print user input to terminal
+    printChoice(choice);
+    // 
+
     return 0;
 }
 
@@ -128,21 +132,29 @@ void rules() {
            "Spock vaporizes rock, and as it always has, rock crushes scissors!'\n\n");
 }
 
+// Define toLower function, which converts all input characters to lower-case
+char* toLower(char* select) {
+    // Convert input to lower-case by looping through every character
+    // one-by-one and calling tolower() method on it
+    for (int i=0; select[i]; i++) {
+        select[i] = tolower(select[i]);
+    }
+    return select;
+}
+
 // Define the userInput function
-char* userInput(char* select) {
+//char* userInput(char* select) {
+    char* userInput() {
+    // Define variable select, which will be used to store user input
+    char select[10];
     // Print the prompt to the terminal
     printf("Please enter your selection now: ");
     // Take user input as string, up to 9 characters
     scanf("%9s", select);
     // FOR TESTING PURPOSES
     printf("Test: %s\n", select);
-    // Return variable so that other functions can use it
-    //return select
-
-    // Convert the input to lower-case by looping through every character one-by-one
-    for (int i = 0; select[i]; i++) {
-        select[i] = tolower(select[i]);
-    }
+    // Call function to convert all letters in user input to lower-case
+    select = toLower(select);
     // DEBUGGING
     printf("%s\n", select);
     // Return the input, now in lower-case
@@ -150,8 +162,14 @@ char* userInput(char* select) {
 }
 
 // Define the printChoice function
-char* printChoice(char* choice) {
+char* printChoice(char* choice, char* random) {
     printf("You have selected %s as your sign, the computer has selected %s.", choice, random);
+}
+
+// Define the computerSign function
+char* computerSign() {
+    char random[10];
+    return random;
 }
 
 /* Don't think I need this anymore
