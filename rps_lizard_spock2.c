@@ -90,12 +90,12 @@ char* toLower(char* select);
 
 // Declare the function that will prompt the user for their selection, 
 // and then store it in the variable, select
-char* userInput();
+char* userSign();
 //char* userInput(char* select);
 
 // Declare the function that will print the user's selection, as well as the
 // computer's, to the terminal(; followed by the outcome ?)
-char* printChoice(char* choice);
+char* printSigns(char* choice, char* random);
 
 // Declare function that selects a sign at random, i.e. the computer's sign
 char* computerSign();
@@ -111,10 +111,11 @@ int main() {
     // specify maximum number of input characters
     //char select[10];
     // Set the local variable, choice, to the output of the userInput function
-    char* choice = userInput();
-    //char* choice = userInput(select);
-    // Print user input to terminal
-    printChoice(choice);
+    char* choice = userSign();
+    // Set the local variable, random, to the output of the computerSign function
+    char* random = computerSign();
+    // Print the user and computer signs to terminal
+    printSigns(choice, random);
     // 
 
     return 0;
@@ -123,8 +124,8 @@ int main() {
 // Define the rules function
 void rules() {
     printf("\nThis is Rock-Paper-Scissors-Lizard-Spock, from the hit TV show,\n"
-           "Big Bang Theory! It is similar to Rock-Paper-Scissors, but with\n"
-	       "two additional options: Lizard and Spock.\n\n"
+           "The Big Bang Theory! It's basically Rock-Paper-Scissors, but with\n"
+	       "two additional signs: Lizard and Spock.\n\n"
            "Nobody can explain the rules like Sheldon Cooper can, so I will\n"
            "simply quote him: 'Scissors cuts paper, paper covers rock,\n"
            "rock crushes lizard, lizard poisons Spock, Spock smashes scissors,\n"
@@ -143,18 +144,17 @@ char* toLower(char* select) {
 }
 
 // Define the userInput function
-//char* userInput(char* select) {
-    char* userInput() {
+char* userSign() {
     // Define variable select, which will be used to store user input
-    char select[10];
+    char select[8];
     // Print the prompt to the terminal
     printf("Please enter your selection now: ");
-    // Take user input as string, up to 9 characters
-    scanf("%9s", select);
+    // Take user input as string, up to 8 characters
+    scanf("%8s", select);
     // FOR TESTING PURPOSES
     printf("Test: %s\n", select);
     // Call function to convert all letters in user input to lower-case
-    select = toLower(select);
+    char select = toLower(select);
     // DEBUGGING
     printf("%s\n", select);
     // Return the input, now in lower-case
