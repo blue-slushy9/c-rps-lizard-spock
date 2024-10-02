@@ -145,7 +145,8 @@ char* toLower(char* select) {
 
 // Define the userInput function
 char* userSign() {
-    // Define variable select, which will be used to store user input
+    // Define variable select, which will be used to store user input;
+    // 9 characters are required to account for the null terminator
     char select[8];
     // Print the prompt to the terminal
     printf("Please enter your selection now: ");
@@ -154,7 +155,8 @@ char* userSign() {
     // FOR TESTING PURPOSES
     printf("Test: %s\n", select);
     // Call function to convert all letters in user input to lower-case
-    char select = toLower(select);
+    toLower(*select);
+    //select = toLower(select);
     // DEBUGGING
     printf("%s\n", select);
     // Return the input, now in lower-case
