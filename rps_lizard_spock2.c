@@ -4,6 +4,7 @@
 #include <ctype.h>
 // For rand() and srand()
 #include <stdlib.h>
+#include <string.h>
 
 // e.g. 'Rock', 'Spock'
 #define MAX_SIGN_LENGTH 10
@@ -145,22 +146,28 @@ char* toLower(char* select) {
 
 // Define the userInput function
 char* userSign() {
-    // Define variable select, which will be used to store user input;
-    // 9 characters are required to account for the null terminator
-    char select[8];
+    // Declare the variable that will store user input as is
+    char rawInput[9];
     // Print the prompt to the terminal
     printf("Please enter your selection now: ");
-    // Take user input as string, up to 8 characters
-    scanf("%8s", select);
+    // Take user input as string, up to 8 characters (we need 9 to account for
+    // the null terminator)
+    scanf("%9s", rawInput);
+    // Dynamically allocate memory for the variable select, we need 8
+    // chars because the longest sign is 8 chars; and we need + 1 for the
+    // null terminator (\0)
+    char* copyInput = malloc(9 * sizeof(char)); 
+    // Copy the value from original input into the copy thereof
+    strcopy(copyInput, rawInput);
     // FOR TESTING PURPOSES
-    printf("Test: %s\n", select);
+    printf("Test: %s\n", copyInput);
     // Call function to convert all letters in user input to lower-case
-    toLower(*select);
+    toLower(copyInput);
     //select = toLower(select);
     // DEBUGGING
-    printf("%s\n", select);
+    printf("%s\n", lowerInput);
     // Return the input, now in lower-case
-    return select;
+    return lowerInput;
 }
 
 // Define the printChoice function
