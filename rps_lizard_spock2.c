@@ -153,17 +153,22 @@ char* userSign() {
     // Take user input as string, up to 8 characters (we need 9 to account for
     // the null terminator)
     scanf("%9s", rawInput);
-    // Dynamically allocate memory for the variable select, we need 8
+    // Dynamically allocate memory for the variable copyInput, we need 8
     // chars because the longest sign is 8 chars; and we need + 1 for the
     // null terminator (\0)
-    char* copyInput = malloc(9 * sizeof(char)); 
+    char* copyInput = malloc(9 * sizeof(char));
+    // Verify whether memory was successfully allocated
+    if (copyInput == NULL) {
+        // fprintf allows you to print to any file stream, e.g. standard error
+        fprintf(stderr, "Memory allocation has failed.\n");
+        return NULL;
+    }
     // Copy the value from original input into the copy thereof
-    strcopy(copyInput, rawInput);
+    strcpy(copyInput, rawInput);
     // FOR TESTING PURPOSES
     printf("Test: %s\n", copyInput);
     // Call function to convert all letters in user input to lower-case
     toLower(copyInput);
-    //select = toLower(select);
     // DEBUGGING
     printf("%s\n", lowerInput);
     // Return the input, now in lower-case
