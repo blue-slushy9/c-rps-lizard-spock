@@ -85,14 +85,15 @@ int main() {
 // Declare our rules to the game, simple text that will print to the terminal
 void rules();
 
-// Declare the function that will convert all letters in user input to lower-
-// case
+// Declare function that will verify whether memory was successfully allocated
+int verifyMalloc(char* ptr);
+
+// Declare function that will convert all letters in user input to lower-case
 char* toLower(char* select);
 
 // Declare the function that will prompt the user for their selection, 
-// and then store it in the variable, select
+// and then store it in the variable
 char* userSign();
-//char* userInput(char* select);
 
 // Declare the function that will print the user's selection, as well as the
 // computer's, to the terminal(; followed by the outcome ?)
@@ -101,22 +102,19 @@ char* printSigns(char* choice, char* random);
 // Declare function that selects a sign at random, i.e. the computer's sign
 char* computerSign();
 
-// Declare our printDict function;
+// Declare printDict function
 //void printDict(const struct Dict *dict);
 
 // main function will contain all other functions in this program
 int main() {
     // Call the rules function
     rules();
-    // Declare the select variable we will use in our userInput function,
-    // specify maximum number of input characters
-    //char select[10];
-    // Set the local variable, choice, to the output of the userInput function
-    char* choice = userSign();
-    // Set the local variable, random, to the output of the computerSign function
-    char* random = computerSign();
+    // Set the local variable, user, to the output of the userSign function
+    char* user = userSign();
+    // Set the local variable, computer, to the output of the computerSign function
+    char* computer = computerSign();
     // Print the user and computer signs to terminal
-    printSigns(choice, random);
+    printSigns(user, computer);
     // 
 
     return 0;
@@ -134,6 +132,17 @@ void rules() {
            "Spock vaporizes rock, and as it always has, rock crushes scissors!'\n\n");
 }
 
+// Define function that will verify whether memory was successfully allocated
+int verifyMalloc(char* ptr) {
+    if (ptr == NULL) {
+        // fprintf allows you to print to any file stream, e.g. standard error
+        fprintf(stderr, "Memory allocation has failed.\n");
+        return 1;
+    }
+    // Implicit else returns success code
+    return 0;
+}
+
 // Define toLower function, which converts all input characters to lower-case
 char* toLower(char* select) {
     // Convert input to lower-case by looping through every character
@@ -144,7 +153,7 @@ char* toLower(char* select) {
     return select;
 }
 
-// Define the userInput function
+// Define the function that will receive and process the user input
 char* userSign() {
     // Declare the variable that will store user input as is
     char rawInput[9];
@@ -153,37 +162,35 @@ char* userSign() {
     // Take user input as string, up to 8 characters (we need 9 to account for
     // the null terminator)
     scanf("%9s", rawInput);
-    // Dynamically allocate memory for the variable copyInput, we need 8
-    // chars because the longest sign is 8 chars; and we need + 1 for the
+    // Dynamically allocate memory for the variable copyInput; we need 8
+    // chars because the longest sign is 8 chars, and we need + 1 for the
     // null terminator (\0)
     char* copyInput = malloc(9 * sizeof(char));
-    // Verify whether memory was successfully allocated
-    if (copyInput == NULL) {
-        // fprintf allows you to print to any file stream, e.g. standard error
-        fprintf(stderr, "Memory allocation has failed.\n");
-        return NULL;
-    }
+    // Call function to verify memory was successfully allocated
+    verifyMalloc(copyInput);
     // Copy the value from original input into the copy thereof
     strcpy(copyInput, rawInput);
     // FOR TESTING PURPOSES
     printf("Test: %s\n", copyInput);
     // Call function to convert all letters in user input to lower-case
-    toLower(copyInput);
+    char* lowerInput = toLower(copyInput);
     // DEBUGGING
     printf("%s\n", lowerInput);
     // Return the input, now in lower-case
     return lowerInput;
 }
 
-// Define the printChoice function
-char* printChoice(char* choice, char* random) {
-    printf("You have selected %s as your sign, the computer has selected %s.", choice, random);
+// Define function that will randomly select a sign for the computer
+char* computerSign() {
+    // Declare variable that will store computer's sign
+    char computer[9];
+    
+    return computer;
 }
 
-// Define the computerSign function
-char* computerSign() {
-    char random[10];
-    return random;
+// Define the printSigns function
+char* printSigns(char* user, char* computer) {
+    printf("You have selected %s as your sign, the computer has selected %s.\n", user, computer);
 }
 
 /* Don't think I need this anymore
