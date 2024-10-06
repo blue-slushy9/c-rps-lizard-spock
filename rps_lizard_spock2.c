@@ -5,6 +5,8 @@
 // For rand() and srand()
 #include <stdlib.h>
 #include <string.h>
+// Used to seed the random number generator
+#include <time.h>
 
 // e.g. 'Rock', 'Spock'
 #define MAX_SIGN_LENGTH 10
@@ -41,28 +43,32 @@ typedef struct {
     InnerDictEntry entries[MAX_ENTRIES];
 } OuterDict;
 
-// Static initialization of our dictionary
-OuterDict dict[] = {
-    {"Rock", {
-        {"Paper", "Paper covers rock, therefore you lose!"},
-        {"Scissors", "Rock crushes scissors, therefore you win!"},
-        {"Lizard", "Rock crushes lizard, therefore you win!"},
-        {"Spock", "Spock vaporizes rock, therefore you lose!"}
+// Define array that will be used to select computer's sign
+const char* signsArray[] = {"rock", "paper", "scissors", "lizard", "spock"};
+
+// Static initialization of dictionary structure that pairs sign combinations
+// with outcomes
+OuterDict signsDict[] = {
+    {"rock", {
+        {"paper", "Paper covers rock, therefore you lose!"},
+        {"scissors", "Rock crushes scissors, therefore you win!"},
+        {"lizard", "Rock crushes lizard, therefore you win!"},
+        {"spock", "Spock vaporizes rock, therefore you lose!"}
         }
     },
-    {"Paper", {
-        {"Scissors", "Scissors cuts paper, therefore you lose!"},
-        {"Lizard", "Lizard eats paper, therefore you lose!"},
-        {"Spock", "Paper disproves Spock, therefore you win!"}
+    {"paper", {
+        {"scissors", "Scissors cuts paper, therefore you lose!"},
+        {"lizard", "Lizard eats paper, therefore you lose!"},
+        {"spock", "Paper disproves Spock, therefore you win!"}
         }
     },
-    {"Scissors", {
-        {"Lizard", "Scissors decapitate lizard, therefore you win!"},
-        {"Spock", "Spock smashes scissors, therefore you lose!"}
+    {"scissors", {
+        {"lizard", "Scissors decapitate lizard, therefore you win!"},
+        {"spock", "Spock smashes scissors, therefore you lose!"}
         }
     },
-    {"Lizard", {
-        {"Spock", "Lizard poisons Spock, therefore you win!"}
+    {"lizard", {
+        {"spock", "Lizard poisons Spock, therefore you win!"}
         }
     }
 };
@@ -95,12 +101,15 @@ char* toLower(char* select);
 // and then store it in the variable
 char* userSign();
 
+// Declare function that will select a random sign from the signs array
+const char* selectRandom();
+
+// Declare function that selects a sign at random, i.e. the computer's sign
+const char* computerSign();
+
 // Declare the function that will print the user's selection, as well as the
 // computer's, to the terminal(; followed by the outcome ?)
 char* printSigns(char* choice, char* random);
-
-// Declare function that selects a sign at random, i.e. the computer's sign
-char* computerSign();
 
 // Declare printDict function
 //void printDict(const struct Dict *dict);
@@ -180,11 +189,30 @@ char* userSign() {
     return lowerInput;
 }
 
+// Define function that selects a sign at random for the computer
+const char* selectRandom() {
+    // Seed the random number generator with the current time, this is 
+    // necessary to ensure different numbers are generated each time
+    srand(time(NULL));
+    // The size variable will be used to confine the output of the random
+    // number generator to values which are useful for our case, i.e. 0-4
+    int size = sizeof(signsArray) / sizeof(signsArray[0]);
+    // Assign manipulated output of random number generator to the variable
+    int index = rand() % size;
+    // Use random index to select a sign from the signs array
+    const char* random = signsArray[index];
+    // DEBUG
+    printf("Computer's Sign: %s\n", random);
+    // Return computer's sign so it can be used by other functions
+    return random;
+}
+
 // Define function that will randomly select a sign for the computer
-char* computerSign() {
+const char* computerSign() {
     // Declare variable that will store computer's sign
-    char computer[9];
-    
+    //char computer[9];
+    // Assign output of function to variable
+    const char* computer = selectRandom();
     return computer;
 }
 
