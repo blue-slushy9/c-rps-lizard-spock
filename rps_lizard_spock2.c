@@ -102,14 +102,26 @@ char* toLower(char* select);
 char* userSign();
 
 // Declare function that will select a random sign from the signs array
-const char* selectRandom();
+char* selectRandom();
 
 // Declare function that selects a sign at random, i.e. the computer's sign
-const char* computerSign();
+char* computerSign();
 
 // Declare the function that will print the user's selection, as well as the
 // computer's, to the terminal(; followed by the outcome ?)
-char* printSigns(char* choice, char* random);
+void printSigns(char* choice, char* random);
+
+// Declare the function that will print the outcome of the sign combination
+void printOutcome(char* choice, char* random);
+
+// Declare function that will print the score tally
+void printScore();
+
+// Declare function that will prompt the user whether they want to play again
+void playAgain();
+
+// Declare function that will encompass the repeatable parts of the program
+void repeatSection();
 
 // Declare printDict function
 //void printDict(const struct Dict *dict);
@@ -124,8 +136,12 @@ int main() {
     char* computer = computerSign();
     // Print the user and computer signs to terminal
     printSigns(user, computer);
-    // 
-
+    // Print the outcome of the above signs
+    printOutcome(user, computer);
+    // Print the score tally
+    printScore();
+    // Prompt user whether they want to play again
+    playAgain();
     return 0;
 }
 
@@ -174,7 +190,7 @@ char* userSign() {
     // Dynamically allocate memory for the variable copyInput; we need 8
     // chars because the longest sign is 8 chars, and we need + 1 for the
     // null terminator (\0)
-    char* copyInput = malloc(9 * sizeof(char));
+    char* copyInput = (char *)malloc(9 * sizeof(char));
     // Call function to verify memory was successfully allocated
     verifyMalloc(copyInput);
     // Copy the value from original input into the copy thereof
@@ -190,7 +206,7 @@ char* userSign() {
 }
 
 // Define function that selects a sign at random for the computer
-const char* selectRandom() {
+char* selectRandom() {
     // Seed the random number generator with the current time, this is 
     // necessary to ensure different numbers are generated each time
     srand(time(NULL));
@@ -200,7 +216,7 @@ const char* selectRandom() {
     // Assign manipulated output of random number generator to the variable
     int index = rand() % size;
     // Use random index to select a sign from the signs array
-    const char* random = signsArray[index];
+    char* random = signsArray[index];
     // DEBUG
     printf("Computer's Sign: %s\n", random);
     // Return computer's sign so it can be used by other functions
@@ -217,9 +233,41 @@ const char* computerSign() {
 }
 
 // Define the printSigns function
-char* printSigns(char* user, char* computer) {
+void printSigns(char* user, char* computer) {
     printf("You have selected %s as your sign, the computer has selected %s.\n", user, computer);
 }
+
+// Define the function that will print the outcome of the sign combination
+void printOutcome(char* choice, char* random) {
+    printf("");
+}
+
+// Define the function that will print the score tally
+void printScore() {
+
+}
+
+// Define the function that will prompt the user whether they want to play again
+void playAgain() {
+
+}
+
+// Define the function that will encompass the repeatable parts of the program
+void repeatSection() {
+    // Set the local variable, user, to the output of the userSign function
+    char* user = userSign();
+    // Set the local variable, computer, to the output of the computerSign function
+    char* computer = computerSign();
+    // Print the user and computer signs to terminal
+    printSigns(user, computer);
+    // Print the outcome of the above signs
+    printOutcome(user, computer);
+    // Print the score tally
+    printScore();
+    // Prompt user whether they want to play again
+    playAgain();
+}
+
 
 /* Don't think I need this anymore
 // Define the printDict function;
