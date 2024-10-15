@@ -95,7 +95,7 @@ void rules();
 int verifyMalloc(char* ptr);
 
 // Declare function that will convert all letters in user input to lower-case
-char* toLower(char* select);
+char* toLower(char* input);
 
 // Declare the function that will prompt the user for their selection, 
 // and then store it in the variable
@@ -169,13 +169,13 @@ int verifyMalloc(char* ptr) {
 }
 
 // Define toLower function, which converts all input characters to lower-case
-char* toLower(char* select) {
+char* toLower(char* input) {
     // Convert input to lower-case by looping through every character
     // one-by-one and calling tolower() method on it
-    for (int i=0; select[i]; i++) {
-        select[i] = tolower(select[i]);
+    for (int i=0; input[i]; i++) {
+        input[i] = tolower(input[i]);
     }
-    return select;
+    return input;
 }
 
 // Define the function that will receive and process the user input
@@ -244,12 +244,31 @@ void printOutcome(char* choice, char* random) {
 
 // Define the function that will print the score tally
 void printScore() {
-
+    // Wins and losses
+    printf("Human: %d\nComputer: %d\n", wins, losses);
 }
 
 // Define the function that will prompt the user whether they want to play again
 void playAgain() {
-
+    // Declare variable that will store user input for this function
+    char yes_no[2];
+    printf("Do you want to play again? [Y/n]");
+    scanf("%2s", yes_no);
+    // Convert input to lower case, assign to variable
+    char* lowerInput = toLower(yes_no);
+    if (yes_no == "y") {
+        // Call the function that contains the repeatable sections of the program
+        repeatSection();
+    }
+    else if (yes_no == "n") {
+        printf("Okay, thank you for playing! Here is the final score: ");
+        printScore();
+    }
+    else {
+        printf("Invalid entry, please try again.\n");
+        // Call function recursively until valid entry is made
+        playAgain();
+    } 
 }
 
 // Define the function that will encompass the repeatable parts of the program
