@@ -128,6 +128,10 @@ void repeatSection();
 
 // main function will contain all other functions in this program
 int main() {
+    // Declare the wins variable
+    int wins = 0;
+    // Declare the losses variable
+    int losses = 0;
     // Call the rules function
     rules();
     // Set the local variable, user, to the output of the userSign function
