@@ -99,13 +99,13 @@ char* toLower(char* input);
 
 // Declare the function that will prompt the user for their selection, 
 // and then store it in the variable
-char* userSign();
+const char* userSign();
 
 // Declare function that will select a random sign from the signs array
 char* selectRandom();
 
 // Declare function that selects a sign at random, i.e. the computer's sign
-char* computerSign();
+const char* computerSign();
 
 // Declare the function that will print the user's selection, as well as the
 // computer's, to the terminal(; followed by the outcome ?)
@@ -135,9 +135,9 @@ int main() {
     // Call the rules function
     rules();
     // Set the local variable, user, to the output of the userSign function
-    char* user = userSign();
+    const char* user = userSign();
     // Set the local variable, computer, to the output of the computerSign function
-    char* computer = computerSign();
+    const char* computer = computerSign();
     // Print the user and computer signs to terminal
     printSigns(user, computer);
     // Print the outcome of the above signs
@@ -183,7 +183,7 @@ char* toLower(char* input) {
 }
 
 // Define the function that will receive and process the user input
-char* userSign() {
+const char* userSign() {
     // Declare the variable that will store user input as is
     char rawInput[9];
     // Print the prompt to the terminal
@@ -210,7 +210,7 @@ char* userSign() {
 }
 
 // Define function that selects a sign at random for the computer
-char* selectRandom() {
+const char* selectRandom() {
     // Seed the random number generator with the current time, this is 
     // necessary to ensure different numbers are generated each time
     srand(time(NULL));
@@ -220,7 +220,7 @@ char* selectRandom() {
     // Assign manipulated output of random number generator to the variable
     int index = rand() % size;
     // Use random index to select a sign from the signs array
-    char* random = signsArray[index];
+    const char* random = signsArray[index];
     // DEBUG
     printf("Computer's Sign: %s\n", random);
     // Return computer's sign so it can be used by other functions
@@ -237,7 +237,7 @@ const char* computerSign() {
 }
 
 // Define the printSigns function
-void printSigns(char* user, char* computer) {
+void printSigns(const char* user, const char* computer) {
     printf("You have selected %s as your sign, the computer has selected %s.\n", user, computer);
 }
 
@@ -247,7 +247,7 @@ void printOutcome(char* choice, char* random) {
 }
 
 // Define the function that will print the score tally
-void printScore() {
+void printScore(char* wins, char* losses) {
     // Wins and losses
     printf("Human: %d\nComputer: %d\n", wins, losses);
 }
