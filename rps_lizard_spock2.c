@@ -115,17 +115,27 @@ void printSigns(char* choice, char* random);
 void printOutcome(char* choice, char* random);
 
 // Declare function that will print the score tally
-void printScore();
+void printScore(int* wins, int* losses);
 
 // Declare function that will prompt the user whether they want to play again
-void playAgain();
+void playAgain(int* wins, int* losses);
 
 // Declare function that will encompass the repeatable parts of the program
-void repeatSection();
+void repeatSection(int* wins, int* losses);
 
 // Declare printDict function
 //void printDict(const struct Dict *dict);
 
+// main function will contain all other functions in this program
+int main() {
+    // Declare the wins and losses variables
+    int wins = 0, losses = 0;
+    // Call the repeatSection() function to play the game for up to 100 rounds
+    repeatSection(&wins, &losses);
+    return 0;
+}
+
+/*
 // main function will contain all other functions in this program
 int main() {
     // Declare the wins variable
@@ -143,11 +153,12 @@ int main() {
     // Print the outcome of the above signs
     printOutcome(user, computer);
     // Print the score tally
-    printScore();
+    printScore(wins, losses);
     // Prompt user whether they want to play again
     playAgain();
     return 0;
 }
+*/
 
 // Define the rules function
 void rules() {
@@ -247,13 +258,13 @@ void printOutcome(char* choice, char* random) {
 }
 
 // Define the function that will print the score tally
-void printScore(char* wins, char* losses) {
+void printScore(int* wins, int* losses) {
     // Wins and losses
     printf("Human: %d\nComputer: %d\n", wins, losses);
 }
 
 // Define the function that will prompt the user whether they want to play again
-void playAgain() {
+void playAgain(int* wins, int* losses) {
     // Declare variable that will store user input for this function
     char yes_no[2];
     printf("Do you want to play again? [Y/n]");
@@ -262,7 +273,7 @@ void playAgain() {
     char* lowerInput = toLower(yes_no);
     if (yes_no == "y") {
         // Call the function that contains the repeatable sections of the program
-        repeatSection();
+        repeatSection(&wins, &losses);
     }
     else if (yes_no == "n") {
         printf("Okay, thank you for playing! Here is the final score: ");
@@ -276,7 +287,7 @@ void playAgain() {
 }
 
 // Define the function that will encompass the repeatable parts of the program
-void repeatSection() {
+void repeatSection(int* wins, int* losses) {
     // Set the local variable, user, to the output of the userSign function
     char* user = userSign();
     // Set the local variable, computer, to the output of the computerSign function
@@ -286,9 +297,9 @@ void repeatSection() {
     // Print the outcome of the above signs
     printOutcome(user, computer);
     // Print the score tally
-    printScore();
+    printScore(&wins, &losses);
     // Prompt user whether they want to play again
-    playAgain();
+    playAgain(&wins, &losses);
 }
 
 
