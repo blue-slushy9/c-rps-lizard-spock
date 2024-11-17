@@ -182,8 +182,44 @@ const char* userSign() {
     return lowerInput;
 }
 
+// Define the function that allocates the memory for a string array
+
+
 // Define function that selects a sign at random for the computer
-const char* selectRandom() {
+char* selectRandom() {
+    // Seed the random number generator with the current time, this is 
+    // necessary to ensure different numbers are generated each time
+    srand(time(NULL));
+    // The size variable will be used to confine the output of the random
+    // number generator to values which are useful for our case, i.e. 0-4
+    int size_generator = sizeof(signsArray) / sizeof(signsArray[0]);
+    // Assign manipulated output of random number generator to the variable
+    int index = rand() % size_generator;
+    // Create sign variable that will store the randomly selected sign
+    char[] sign;
+    // Use random index to select a sign from the signs array, 
+    // then copy it to the variable
+    strcopy(sign, signsArray[index]);
+    // Assign the sizeof (i.e. length) of our randomly generated sign to variable
+    int size_string = sizeof(sign);
+    // Create random variable with dynamically allocated memory
+    char* random = (char*)malloc(size_string * sizeof(char));
+    if (random == NULL) {
+        // Handle allocation failure
+        printf("Memory allocation has failed.\n");
+        return NULL;
+    }
+    // Copy the contents of the sign variable to our new pointer, random
+    strcopy(random, sign);
+    // DEBUG
+    printf("Computer's Sign: %s\n", random);
+    // Return computer's sign so it can be used by other functions
+    return random;
+}
+
+/* Leaving this here for now in case I mess up the above version
+// Define function that selects a sign at random for the computer
+char* selectRandom(int size) {
     // Seed the random number generator with the current time, this is 
     // necessary to ensure different numbers are generated each time
     srand(time(NULL));
@@ -199,6 +235,7 @@ const char* selectRandom() {
     // Return computer's sign so it can be used by other functions
     return random;
 }
+*/
 
 // Define function that will randomly select a sign for the computer
 const char* computerSign() {
